@@ -6,8 +6,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 
 {
+    // Configuration parameters
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
+    [SerializeField] float projectileSpeed = 10f;
+
+    // We can map the Laser prefab into the Player object
+    [SerializeField] GameObject laserPrefab;
 
     float xMin, yMin;
     float xMax, yMax;
@@ -17,21 +22,36 @@ public class Player : MonoBehaviour
     void Start()
     {
         SetupMoveBoundaries();
+        StartCoroutine(PrintSomething());
     }
 
-    private void SetupMoveBoundaries()
+    IEnumerator PrintSomething()
     {
-        Camera gameCamera = Camera.main;
-        xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
-        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
-        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
-        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
+        Debug.Log("Print before yield");
+        yield return WaitForSeconds(3f);
+        Debug.Log("Print after yield");
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        FireLaser();
+    }
+
+    private void FireLaser()
+    {
+        // GetButtonDown checks the Fire1 in the Project Settings -> Input
+        if (Input.GetButtonDown("Fire1"))
+        {
+            // Instantiate a laserPrefab in the current position of player with no rotation. laserPrefab is known as it has been mapped from the inspector via the SerializeField
+            GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
+
+            // Access the Rigidbody component of the laser
+            laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+        }
     }
 
     private void Move()
@@ -52,5 +72,14 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(newXPos, newYPos);
 
 
+    }
+
+    private void SetupMoveBoundaries()
+    {
+        Camera gameCamera = Camera.main;
+        xMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).x + padding;
+        xMax = gameCamera.ViewportToWorldPoint(new Vector3(1, 0, 0)).x - padding;
+        yMin = gameCamera.ViewportToWorldPoint(new Vector3(0, 0, 0)).y + padding;
+        yMax = gameCamera.ViewportToWorldPoint(new Vector3(0, 1, 0)).y - padding;
     }
 }
