@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] float projectileSpeed = 10f;
+    [SerializeField] float projectileFiringPeriod = 1f;
+
+    Coroutine firingCoroutine;
 
     // We can map the Laser prefab into the Player object
     [SerializeField] GameObject laserPrefab;
@@ -22,16 +25,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         SetupMoveBoundaries();
-        StartCoroutine(PrintSomething());
+        
     }
-
-    IEnumerator PrintSomething()
-    {
-        Debug.Log("Print before yield");
-        yield return WaitForSeconds(3f);
-        Debug.Log("Print after yield");
-    }
-
 
 
     // Update is called once per frame
@@ -41,23 +36,41 @@ public class Player : MonoBehaviour
         FireLaser();
     }
 
+
     private void FireLaser()
     {
         // GetButtonDown checks the Fire1 in the Project Settings -> Input
         if (Input.GetButtonDown("Fire1"))
+        {
+            firingCoroutine = StartCoroutine(FireContinuously());
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(firingCoroutine);
+        }
+    }
+
+    IEnumerator FireContinuously()
+    {
+        // Once FireContinuously is called, it will loop indefinitely until the GetButtonUp condition is satisfied
+        while (true)
         {
             // Instantiate a laserPrefab in the current position of player with no rotation. laserPrefab is known as it has been mapped from the inspector via the SerializeField
             GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
 
             // Access the Rigidbody component of the laser
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
+
+            yield return new WaitForSeconds(projectileFiringPeriod);
+            
         }
     }
 
     private void Move()
     {
         // This is connected to Edit -> Project Settings -> Input. In here you can define the specs for input devices (keys, mouse, joystick) to move sprites 
-        // Saying Horizontal means that deltaX is calculated from the input device movement on the x-axis and y-axis
+        // Saying Horizontal means that deltaX is calculated from the input device movement on the x-axis defined in Project Settings input as Horizontal (Vertical for y-axis)
         // Time.deltaTime calculates the time between frames (times the Update is called), to speed up or slow down use a constant value (p.e. moveSpeed)
         var deltaX = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         var deltaY = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
@@ -74,6 +87,7 @@ public class Player : MonoBehaviour
 
     }
 
+    // Define the boundaries of the game camera in world points
     private void SetupMoveBoundaries()
     {
         Camera gameCamera = Camera.main;
