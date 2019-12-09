@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Game object     Waves/Wave x
+Configuration   Prefabs/Enemy
+                Prefabs/Path x
+                Time Between Spawns
+                Spawn Random Factor
+                Number of enemies
+                Move Speed
+*/
+
+// This script defines and configures the wave of enemy (mapped from enemy prefab), waypoints (mapped from the path prefab) and other wave configuration
+
 [CreateAssetMenu(menuName = "Enemy Wave Config")]
 
 public class WaveConfig : ScriptableObject
 {
-
+    // enemyPrefab and pathPrefab are not assigned from inspector but in Wave x
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject pathPrefab;
     [SerializeField] float timeBetweenSpawns = 0.5f;

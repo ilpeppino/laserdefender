@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Game object    : Prefab/Player
+Configuration  : Laser
+                 Move Speed
+                 Padding
+                 Projectile Speed
+                 Projectile Firing Period
+*/
 public class Player : MonoBehaviour
 
 {
@@ -53,7 +61,7 @@ public class Player : MonoBehaviour
 
     IEnumerator FireContinuously()
     {
-        // Once FireContinuously is called, it will loop indefinitely until the GetButtonUp condition is satisfied
+        // Once FireContinuously is called, it will loop indefinitely until the GetButtonUp condition (which is checked every frame update) is satisfied
         while (true)
         {
             // Instantiate a laserPrefab in the current position of player with no rotation. laserPrefab is known as it has been mapped from the inspector via the SerializeField
