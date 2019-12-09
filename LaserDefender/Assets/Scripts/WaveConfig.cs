@@ -15,7 +15,22 @@ public class WaveConfig : ScriptableObject
     [SerializeField] float moveSpeed = 2f;
 
     public GameObject GetEnemyPrefab() { return enemyPrefab; }
-    public GameObject GetPathPrefab() { return pathPrefab; }
+
+
+    public List<Transform> GetWaypoints() 
+    {
+        // Return waypoints from a path
+        var waveWaypoints = new List<Transform>();
+
+        // Path is parent of Waypoints
+        // Therefore i am looping in the children of pathPrefab, accessing their Transform and adding them to the list
+        foreach (Transform child in pathPrefab.transform)
+        {
+            waveWaypoints.Add(child);
+        }
+
+        return waveWaypoints; 
+    }
     public float GetTimeBetweenSpawnsPrefab() { return timeBetweenSpawns; }
     public float GetSpawnRandomFactor() { return spawnRandomFactor; }
     public int GetNumberOfEnemies() { return numberOfEnemies; }

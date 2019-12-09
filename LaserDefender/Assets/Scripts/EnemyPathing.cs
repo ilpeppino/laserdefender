@@ -6,7 +6,8 @@ public class EnemyPathing : MonoBehaviour
     
 {
     // I had put GameObject, but Transform is better since we need to get locations of the waypoints
-    [SerializeField] List<Transform> waypoints;
+    List<Transform> waypoints;
+    [SerializeField] WaveConfig waveConfig;
     [SerializeField] float moveSpeed = 2f;
     int waypointIndex = 0;
 
@@ -14,8 +15,10 @@ public class EnemyPathing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        waypoints = waveConfig.GetWaypoints();
         // the transform position is assigned to the object which this script is used from (that is Enemy), so that will be the Enemy position
-        // transform.position = waypoints[waypointIndex].transform.position;
+        transform.position = waypoints[waypointIndex].transform.position;
     }
 
     // Update is called once per frame
