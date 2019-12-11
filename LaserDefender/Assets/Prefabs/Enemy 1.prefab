@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 9107548345729246365}
   - component: {fileID: 9107548345729246366}
   - component: {fileID: 4657993798729713648}
+  - component: {fileID: 114155817729060362}
+  - component: {fileID: 1180755341550926592}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 9107548345729246367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06, y: 8.73, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9582075, y: 1.0359, z: 1.0359}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,3 +94,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc0eb7f3772abb47aae50c1ec5ce7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114155817729060362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107548345729246367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28da8a4f1155d9c4d9e4a441c05af29b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  shotCounter: 0
+  minTimeBetweenShots: 0.2
+  maxTimeBetweenShots: 3
+  laserSpeed: 10
+  enemyLaserPrefab: {fileID: 5525175553337807788, guid: e1a89f6e5eba60f49b5b58e5a0ce7892,
+    type: 3}
+--- !u!58 &1180755341550926592
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9107548345729246367}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.008707734, y: 0.082122646}
+  serializedVersion: 2
+  m_Radius: 0.61244667
