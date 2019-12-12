@@ -15,15 +15,20 @@ public class Player : MonoBehaviour
 
 {
     // Configuration parameters
+    [Header("Player movement")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
+    [SerializeField] int health = 100;
+
+    [Header("Projectile")]
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileFiringPeriod = 1f;
+    [SerializeField] GameObject laserPrefab;
 
     Coroutine firingCoroutine;
 
     // We can map the Laser prefab into the Player object
-    [SerializeField] GameObject laserPrefab;
+    
 
     float xMin, yMin;
     float xMax, yMax;
@@ -72,6 +77,27 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds(projectileFiringPeriod);
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // damageDealer stores the DamageDealer component of the object which hits the enemy
+        Debug.Log("OnTriggerEnter2D called");
+        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        // Protecting agains null errors when damagedealer doesnt exist
+        if (!damageDealer) { return;  }
+        ProcessHit(damageDealer);
+    }
+
+    private void ProcessHit(DamageDealer damageDealer)
+    {
+        health -= damageDealer.GetDamage();
+        damageDealer.Hit();
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

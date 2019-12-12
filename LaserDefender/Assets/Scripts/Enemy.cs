@@ -46,12 +46,15 @@ public class Enemy : MonoBehaviour
     {
         // damageDealer stores the DamageDealer component of the object which hits the enemy
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+        // Protecting agains null errors when damagedealer doesnt exist
+        if (!damageDealer) { return; }
         ProcessHit(damageDealer);
     }
 
     private void ProcessHit(DamageDealer damageDealer)
     {
         health -= damageDealer.GetDamage();
+        damageDealer.Hit();
 
         if (health <= 0)
         {

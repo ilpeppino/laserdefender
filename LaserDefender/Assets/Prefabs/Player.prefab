@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1217712262350593502}
   - component: {fileID: 1217712262350593503}
   - component: {fileID: 1217712262350593501}
-  m_Layer: 0
+  - component: {fileID: 632516786}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +95,54 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   padding: 1
+  health: 500
   projectileSpeed: 10
   projectileFiringPeriod: 0.1
   laserPrefab: {fileID: 5940304662289541819, guid: 0ad3dfaee2682514cb22d00b64baf788,
     type: 3}
+--- !u!60 &632516786
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1217712262350593056}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.12, y: 0.75}
+    newSize: {x: 1.12, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.45280296, y: -0.21607304}
+      - {x: 0.5373359, y: -0.07686901}
+      - {x: 0.54186875, y: -0.060328484}
+      - {x: 0.49093425, y: -0.03486061}
+      - {x: 0.46159106, y: -0.031123161}
+      - {x: 0.3044307, y: 0.046437263}
+      - {x: 0.31944478, y: 0.03462124}
+      - {x: 0.08640146, y: 0.18728447}
+      - {x: 0.0464015, y: 0.32513905}
+      - {x: -0.044671655, y: 0.32967186}
+      - {x: -0.09574467, y: 0.1903286}
+      - {x: -0.49654025, y: -0.042197227}
+      - {x: -0.51920444, y: -0.11686897}
+      - {x: -0.37228495, y: -0.34818268}
+      - {x: -0.3728029, y: -0.3432703}
+      - {x: -0.17280298, y: -0.2951393}
+      - {x: -0.10920447, y: -0.34780312}
+      - {x: 0.12640145, y: -0.35233593}
+      - {x: 0.15827012, y: -0.28420353}
+      - {x: 0.32906562, y: -0.32780266}
+      - {x: 0.39453274, y: -0.31513882}
