@@ -11,9 +11,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] float minTimeBetweenShots = 0.2f;
     [SerializeField] float maxTimeBetweenShots = 3f;
     [SerializeField] float laserSpeed = 1f;
+    [SerializeField] float durationExplosion = 1f; 
 
     // We can map the Laser prefab into the Player object
     [SerializeField] GameObject enemyLaserPrefab;
+    [SerializeField] GameObject starExplosionPrefab;
     
     private void Start()
     {
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
+        
         // damageDealer stores the DamageDealer component of the object which hits the enemy
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
         // Protecting agains null errors when damagedealer doesnt exist
@@ -58,7 +62,16 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        
+        GameObject explosion = Instantiate(starExplosionPrefab, transform.position, Quaternion.identity) as GameObject;
+        Destroy(gameObject);
+        Destroy(explosion, durationExplosion);
+
     }
 }
