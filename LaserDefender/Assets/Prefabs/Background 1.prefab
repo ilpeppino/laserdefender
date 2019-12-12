@@ -90,4 +90,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcb433aa86dcac40a7b3cf937346843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundScrollingSpeed: 0.5
+  backgroundScrollingSpeed: 0.1
