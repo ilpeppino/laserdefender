@@ -15,10 +15,14 @@ public class Player : MonoBehaviour
 
 {
     // Configuration parameters
-    [Header("Player movement")]
+    [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
     [SerializeField] int health = 100;
+    [SerializeField] AudioClip sfx_PlayerShooting;
+    [SerializeField] [Range(0, 1)] float sfx_VolumePlayerShooting = 0.2f;
+    [SerializeField] AudioClip sfx_PlayerExploding;
+    [SerializeField] [Range(0, 1)] float sfx_VolumePlayerExploding = 0.7f;
 
     [Header("Projectile")]
     [SerializeField] float projectileSpeed = 10f;
@@ -72,6 +76,8 @@ public class Player : MonoBehaviour
             // Instantiate a laserPrefab in the current position of player with no rotation. laserPrefab is known as it has been mapped from the inspector via the SerializeField
             GameObject laser = Instantiate(laserPrefab, transform.position, Quaternion.identity) as GameObject;
 
+            AudioSource.PlayClipAtPoint(sfx_PlayerShooting, Camera.main.transform.position, sfx_VolumePlayerShooting);
+
             // Access the Rigidbody component of the laser
             laser.GetComponent<Rigidbody2D>().velocity = new Vector2(0, projectileSpeed);
 
@@ -97,8 +103,14 @@ public class Player : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(sfx_PlayerExploding, Camera.main.transform.position, sfx_VolumePlayerExploding);
     }
 
     private void Move()

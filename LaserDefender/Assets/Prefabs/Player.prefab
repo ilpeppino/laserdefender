@@ -96,6 +96,10 @@ MonoBehaviour:
   moveSpeed: 10
   padding: 1
   health: 500
+  sfx_PlayerShooting: {fileID: 8300000, guid: 10a43c8eff130b540a73277aa4985fa0, type: 3}
+  sfx_VolumePlayerShooting: 1
+  sfx_PlayerExploding: {fileID: 8300000, guid: dd88aac3a5c94d64b9e18c866a16a01f, type: 3}
+  sfx_VolumePlayerExploding: 0.218
   projectileSpeed: 10
   projectileFiringPeriod: 0.1
   laserPrefab: {fileID: 5940304662289541819, guid: 0ad3dfaee2682514cb22d00b64baf788,

@@ -111,6 +111,11 @@ MonoBehaviour:
   minTimeBetweenShots: 0.2
   maxTimeBetweenShots: 3
   laserSpeed: 10
+  durationExplosion: 1
+  sfx_EnemyExploding: {fileID: 8300000, guid: 953b624dd2910d94887a6155753c883d, type: 3}
+  sfx_VolumeEnemyExploding: 0.611
+  sfx_EnemyShooting: {fileID: 8300000, guid: 6ff016af8a6842340b0d6472f2a5bf26, type: 3}
+  sfx_VolumeEnemyShooting: 0.282
   enemyLaserPrefab: {fileID: 5525175553337807788, guid: e1a89f6e5eba60f49b5b58e5a0ce7892,
     type: 3}
   starExplosionPrefab: {fileID: 9057542531044635158, guid: 177d59211ea0c5c4e8858805ccff10c6,
