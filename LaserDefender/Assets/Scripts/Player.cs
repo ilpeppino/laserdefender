@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     [Header("Player")]
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float padding = 1f;
-    [SerializeField] int health = 100;
+    [SerializeField] int health = 500;
     [SerializeField] AudioClip sfx_PlayerShooting;
     [SerializeField] [Range(0, 1)] float sfx_VolumePlayerShooting = 0.2f;
     [SerializeField] AudioClip sfx_PlayerExploding;
@@ -51,6 +51,11 @@ public class Player : MonoBehaviour
     {
         Move();
         FireLaser();
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 
 

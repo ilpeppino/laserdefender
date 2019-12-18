@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    [SerializeField] int scoreValue = 150;
     [SerializeField] float health = 100;
     [SerializeField] float shotCounter;
     [SerializeField] float minTimeBetweenShots = 0.2f;
@@ -79,6 +79,8 @@ public class Enemy : MonoBehaviour
         Destroy(explosion, durationExplosion);
 
         AudioSource.PlayClipAtPoint(sfx_EnemyExploding, Camera.main.transform.position, sfx_VolumeEnemyExploding);
+
+        FindObjectOfType<GameLogic>().AddToScore(scoreValue);
 
     }
 }
